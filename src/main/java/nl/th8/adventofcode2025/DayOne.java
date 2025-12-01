@@ -61,7 +61,8 @@ public class DayOne implements Day {
             if(fullSpins > 0 && previousPosition == 0 && rotationAdjustment < 0)
                 fullSpins--;
 
-            //Now that we know the amount of full rotations, the dial back into it's bounds by modulo 100
+            //Now that we know the amount of full rotations, put the dial back into it's bounds by modulo 100
+            //We use Math#floorMod instead of %= because of its more applicable handling of negative values. (floorMod(-1, 100) -> 99 whereas -1 %= 100 -> -1)
             currentPosition = Math.floorMod(currentPosition, 100);
 
             timesAtZero += fullSpins;
