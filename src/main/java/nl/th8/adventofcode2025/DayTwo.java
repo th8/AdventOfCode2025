@@ -21,11 +21,11 @@ public class DayTwo implements Day {
     }
 
     /**
-     * To solve part one of the puzzle we turn the L/R instructions into negative or positive numbers to add to the current position.
-     * After adding the negative or positive number to our current position we modulo it by 100 to get the actual position on the dial,
-     * and check if this would be position 0 on the dial.
+     * To solve part one we process each number contained in the given ranges, break their Stringified versions in half
+     * and check if each half of the string matches the other character for character.
+     * This cuts the runtime in half compared to just using {@link String#equals(Object)}
      *
-     * @return The amount of times the dial was on position 0.
+     * @return The collective sum of all invalid ids
      */
     public long solvePartOne() {
         String inputString = puzzleInputParser.getInputAsString();
@@ -72,6 +72,14 @@ public class DayTwo implements Day {
         return true;
     }
 
+    /**
+     * To solve part two we process each number contained in the given ranges, break their Stringified versions in parts
+     * recursively and check if each split of the string matches the other parts character for character. When they
+     * do not match we try the same thing again, splitting the String into smaller chunks,
+     * until we've split it into 1-sized chunks.
+     *
+     * @return The collective sum of all invalid ids
+     */
     public long solvePartTwo() {
         String inputString = puzzleInputParser.getInputAsString();
         List<String> idRanges = Arrays.stream(inputString.split(",")).toList();
