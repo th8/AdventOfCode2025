@@ -6,7 +6,7 @@ import java.util.List;
 
 public class AdventOfCode {
 
-    private static final List<Day> days = List.of(new DayOne(), new DayTwo(), new DayThree());
+    private static final List<Day> days = List.of(new DayOne(), new DayTwo(), new DayThree(), new DayFour());
 
     public static void main(String[] args) {
         StopWatch stopWatch = new StopWatch("Advent of Code 2024");
