@@ -37,14 +37,12 @@ public class DayThree implements Day {
         int index = bank.indexOf(Character.forDigit(nrToFind, 10));
         int highestJoltage = 0;
 
-        while (index != -1 && index + 1 < bank.length()) {
+        if (index != -1 && index + 1 < bank.length()) {
             String secondBattery = String.valueOf(findHighestSecondBattery(bank.substring(index + 1), 9));
             int foundJoltage = Integer.parseInt(nrToFind + secondBattery);
             if(foundJoltage > highestJoltage) {
                 highestJoltage = foundJoltage;
             }
-
-            index = bank.indexOf(Character.forDigit(nrToFind, 10), index + 1);
         }
         if(highestJoltage == 0) {
             return findHighestJoltage(bank, nrToFind-1);
@@ -83,7 +81,7 @@ public class DayThree implements Day {
         int index = bank.indexOf(Character.forDigit(nrToFind, 10));
         long highestJoltage = 0;
 
-        while (index != -1 && index + amountOfBatteries <= bank.length()) {
+        if(index != -1 && index + amountOfBatteries <= bank.length()) {
             if(amountOfBatteries == 1) {
                 return nrToFind;
             }
@@ -92,8 +90,6 @@ public class DayThree implements Day {
             if(foundJoltage > highestJoltage) {
                 highestJoltage = foundJoltage;
             }
-
-            index = bank.indexOf(Character.forDigit(nrToFind, 10), index + 1);
         }
         if(highestJoltage == 0) {
             return findHighestJoltageTwo(bank, amountOfBatteries, nrToFind-1);
