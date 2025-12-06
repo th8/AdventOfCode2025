@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class DayTwo implements Day {
+public class Day02 implements Day {
     private final PuzzleInputParser puzzleInputParser;
 
     //For actual use
-    public DayTwo() {
+    public Day02() {
         puzzleInputParser = new PuzzleInputParser(Path.of("src", "main", "resources", "input", "2.txt"));
     }
 
     //For Unittesting
-    public DayTwo(PuzzleInputParser puzzleInputParser) {
+    public Day02(PuzzleInputParser puzzleInputParser) {
         this.puzzleInputParser = puzzleInputParser;
     }
 

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class DayFiveTest {
+class Day05Test {
 
     private final PuzzleInputParser puzzleInputParser = mock(PuzzleInputParser.class);
 
@@ -35,7 +35,7 @@ class DayFiveTest {
                 "32"
         ));
 
-        day = new DayFive(puzzleInputParser);
+        day = new Day05(puzzleInputParser);
     }
 
     @Test

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class DayTwoTest {
+class Day03Test {
 
     private final PuzzleInputParser puzzleInputParser = mock(PuzzleInputParser.class);
 
@@ -21,19 +21,24 @@ class DayTwoTest {
 
     @BeforeEach
     void beforeEach() {
-        when(puzzleInputParser.getInputAsString()).thenReturn("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124");
+        when(puzzleInputParser.getInputAsStringList()).thenReturn(Arrays.asList(
+                "987654321111111",
+                "811111111111119",
+                "234234234234278",
+                "818181911112111"
+        ));
 
-        day = new DayTwo(puzzleInputParser);
+        day = new Day03(puzzleInputParser);
     }
 
     @Test
     void solvePart1() {
-        assertEquals(1227775554, day.solvePartOne());
+        assertEquals(357, day.solvePartOne());
     }
 
     @Test
     void solvePart2() {
-        assertEquals(4174379265L, day.solvePartTwo());
+        assertEquals(3121910778619L, day.solvePartTwo());
 
     }
 }

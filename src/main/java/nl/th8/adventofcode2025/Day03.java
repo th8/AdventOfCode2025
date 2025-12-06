@@ -3,20 +3,18 @@ package nl.th8.adventofcode2025;
 import nl.th8.adventofcode2025.utils.PuzzleInputParser;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class DayThree implements Day {
+public class Day03 implements Day {
     private final PuzzleInputParser puzzleInputParser;
 
     //For actual use
-    public DayThree() {
+    public Day03() {
         puzzleInputParser = new PuzzleInputParser(Path.of("src", "main", "resources", "input", "3.txt"));
     }
 
     //For Unittesting
-    public DayThree(PuzzleInputParser puzzleInputParser) {
+    public Day03(PuzzleInputParser puzzleInputParser) {
         this.puzzleInputParser = puzzleInputParser;
     }
 

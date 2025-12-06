@@ -5,16 +5,16 @@ import nl.th8.adventofcode2025.utils.PuzzleInputParser;
 import java.nio.file.Path;
 import java.util.*;
 
-public class DayFour implements Day {
+public class Day04 implements Day {
     private final PuzzleInputParser puzzleInputParser;
 
     //For actual use
-    public DayFour() {
+    public Day04() {
         puzzleInputParser = new PuzzleInputParser(Path.of("src", "main", "resources", "input", "4.txt"));
     }
 
     //For Unittesting
-    public DayFour(PuzzleInputParser puzzleInputParser) {
+    public Day04(PuzzleInputParser puzzleInputParser) {
         this.puzzleInputParser = puzzleInputParser;
     }
 

@@ -12,11 +12,11 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class DayOneTest {
+class Day01Test {
 
     private final PuzzleInputParser puzzleInputParser = mock(PuzzleInputParser.class);
 
-    private DayOne dayOne;
+    private Day01 day01;
 
     @BeforeEach
     public void beforeEach() {
@@ -33,17 +33,17 @@ class DayOneTest {
                 "R14",
                 "L82"));
 
-        dayOne = new DayOne(puzzleInputParser);
+        day01 = new Day01(puzzleInputParser);
     }
 
     @Test
     void solvePart1() {
-        assertEquals(4, dayOne.solvePartOne());
+        assertEquals(4, day01.solvePartOne());
     }
 
     @Test
     void solvePart2() {
-        assertEquals(14, dayOne.solvePartTwo());
+        assertEquals(14, day01.solvePartTwo());
 
         when(puzzleInputParser.getInputAsStringList()).thenReturn(Arrays.asList("L68",
                 "L30",
@@ -55,7 +55,7 @@ class DayOneTest {
                 "L99",
                 "R14",
                 "L82"));
-        assertEquals(6, dayOne.solvePartTwo());
+        assertEquals(6, day01.solvePartTwo());
 
         when(puzzleInputParser.getInputAsStringList()).thenReturn(Arrays.asList("L68",
                 "L30",
@@ -68,9 +68,9 @@ class DayOneTest {
                 "L99",
                 "R14",
                 "L82"));
-        assertEquals(9, dayOne.solvePartTwo());
+        assertEquals(9, day01.solvePartTwo());
 
         when(puzzleInputParser.getInputAsStringList()).thenReturn(Arrays.asList("L250", "L1", "R2"));
-        assertEquals(4, dayOne.solvePartTwo());
+        assertEquals(4, day01.solvePartTwo());
     }
 }
