@@ -35,21 +35,21 @@ public class Day06 implements Day {
     public long solvePartOne() {
         List<String> workSheet = puzzleInputParser.getInputAsStringList();
         int amountOfProblems = workSheet.getFirst().split(WHITESPACE_REGEX).length;
-        List<List<Long>> columns = initEmptyLists(amountOfProblems);
+        List<List<Long>> operands = initEmptyLists(amountOfProblems);
 
         for(var row : workSheet) {
-            parseRow(row, columns);
+            parseRow(row, operands);
         }
 
         long totalSum = 0;
         String[] operators = workSheet.getLast().split(WHITESPACE_REGEX);
         for(int i = 0;  i < operators.length; i++) {
             if(operators[i].equals(OPERATOR_SUM))
-                totalSum += columns.get(i).stream()
+                totalSum += operands.get(i).stream()
                         .mapToLong(Long::longValue)
                         .sum();
             else if(operators[i].equals(OPERATOR_MULTIPLY))
-                totalSum += columns.get(i).stream()
+                totalSum += operands.get(i).stream()
                         .mapToLong(Long::longValue)
                         .reduce(1, (a, b) -> a * b);
         }
@@ -75,13 +75,13 @@ public class Day06 implements Day {
      * Parse a row of input, and put all numbers into the corresponding lists.
      *
      * @param row to parse
-     * @param columns to put the numbers into
+     * @param operands to put the numbers into
      */
-    private void parseRow(String row, List<List<Long>> columns) {
+    private void parseRow(String row, List<List<Long>> operands) {
         String[] rowSplit = row.trim().split(WHITESPACE_REGEX);
         for(int i = 0; i < rowSplit.length; i++) {
             if(rowSplit[i].matches(DECIMAL_REGEX)) {
-                columns.get(i).add(Long.parseLong(rowSplit[i]));
+                operands.get(i).add(Long.parseLong(rowSplit[i]));
             }
         }
     }
@@ -96,19 +96,19 @@ public class Day06 implements Day {
     public long solvePartTwo() {
         List<String> workSheet = puzzleInputParser.getInputAsStringList();
         int amountOfProblems = workSheet.getFirst().split(WHITESPACE_REGEX).length;
-        List<List<Long>> columns = initEmptyLists(amountOfProblems);
+        List<List<Long>> operands = initEmptyLists(amountOfProblems);
 
-        parseColumns(workSheet, columns);
+        parseColumns(workSheet, operands, amountOfProblems);
 
         long totalSum = 0;
         String[] operators = workSheet.getLast().split(WHITESPACE_REGEX);
         for(int i = 0;  i < operators.length; i++) {
             if(operators[i].equals(OPERATOR_SUM))
-                totalSum += columns.get(i).stream()
+                totalSum += operands.get(i).stream()
                         .mapToLong(Long::longValue)
                         .sum();
             else if(operators[i].equals(OPERATOR_MULTIPLY))
-                totalSum += columns.get(i).stream()
+                totalSum += operands.get(i).stream()
                         .mapToLong(Long::longValue)
                         .reduce(1, (a, b) -> a * b);
         }
@@ -121,14 +121,13 @@ public class Day06 implements Day {
      * See {@link this#constructNumbers(List, List, int, int, int)}
      *
      * @param workSheet to convert
-     * @param columns to convert into
+     * @param operands to convert into
      */
-    private void parseColumns(List<String> workSheet, List<List<Long>> columns) {
-        int amountOfProblems = workSheet.getFirst().split(WHITESPACE_REGEX).length;
+    private void parseColumns(List<String> workSheet, List<List<Long>> operands, int amountOfColumns) {
         int currentPosition = 0;
-        for(int i = 0; i < amountOfProblems; i++) {
+        for(int i = 0; i < amountOfColumns; i++) {
             int columnSize = workSheet.getLast().split("[+*]")[i+1].length()+1;
-            constructNumbers(workSheet, columns, i, currentPosition, columnSize);
+            constructNumbers(workSheet, operands, i, currentPosition, columnSize);
             currentPosition += columnSize;
         }
     }
@@ -139,23 +138,22 @@ public class Day06 implements Day {
      * required number.
      *
      * @param workSheet the worksheet input
-     * @param output to put the constructed numbers into
+     * @param operands to put the constructed numbers into
      * @param columnIndex current column being parsed
      * @param columnPosition starting index of the column in the rows of the worksheet.
      * @param columnSize size of the column including the whitespace behind the numbers.
      */
-    private void constructNumbers(List<String> workSheet, List<List<Long>> output, int columnIndex, int columnPosition, int columnSize) {
+    private void constructNumbers(List<String> workSheet, List<List<Long>> operands, int columnIndex, int columnPosition, int columnSize) {
         //Iterate through the column in reverse. (Subtract one from its size to convert to its index)
         for(int indexInColumn = columnSize - 1; indexInColumn >= 0; indexInColumn--) {
             StringBuilder number = new StringBuilder();
-            //Get the character in this position from each row excluding the last one which contains the operators.
+            //Get the character at the current indexInColumn from each row excluding the last one which contains the operators.
             for(int rowIndex = 0; rowIndex < workSheet.size() - 1; rowIndex++) {
-                String textInColumn = workSheet.get(rowIndex).substring(columnPosition, columnPosition + columnSize);
-                number.append(textInColumn.charAt(indexInColumn));
+                number.append(workSheet.get(rowIndex).charAt(columnPosition + indexInColumn));
             }
 
             if(!number.toString().trim().isEmpty())
-                output.get(columnIndex).add(Long.parseLong(number.toString().trim()));
+                operands.get(columnIndex).add(Long.parseLong(number.toString().trim()));
         }
     }
 
