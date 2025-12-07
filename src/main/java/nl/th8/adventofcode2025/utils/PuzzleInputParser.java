@@ -60,4 +60,18 @@ public class PuzzleInputParser {
             throw new IllegalArgumentException("Unable to read input file, I can't solve puzzles like this! Bye.");
         }
     }
+    
+    public char[][] getInputAs3DCharArray() {
+        try(var fileStream = Files.lines(puzzleInputPath)) {
+            var list = fileStream.toList();
+            char[][] returnValue = new char[list.size()][];
+            for(int i = 0; i < list.size(); ++i) {
+                returnValue[i] = list.get(i).toCharArray();
+            }
+            return returnValue;
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            throw new IllegalArgumentException("Unable to read input file, I can't solve puzzles like this! Bye.");
+        }
+    }
 }
