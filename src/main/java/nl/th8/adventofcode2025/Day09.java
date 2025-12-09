@@ -177,8 +177,8 @@ public class Day09 implements Day {
 
     /**
      * Checks whether a combination of tiles forms a valid rectangle. We first check if the four corners are in bounds according
-     * to the minMaxCache we built earlier. If those are in bound, we check all vertices too. We do not need to check the entire
-     * rectangle, as anything contained in valid vertices will also be valid.
+     * to the minMaxCache we built earlier. If those are in bound, we check all edges too. We do not need to check the entire
+     * rectangle, as anything contained in valid edges will also be valid.
      * 
      * @param redTile 
      * @param otherTile
@@ -201,17 +201,17 @@ public class Day09 implements Day {
         if(checkNotInBound(minMaxCache, xEnd, yEnd))
             return false;
         
-        //Expensive checks along all vertices of the rectangle
-        if(!horizontalVertexInBounds(xBegin, xEnd, yBegin, minMaxCache))
+        //Expensive checks along all edges of the rectangle
+        if(!horizontalEdgeInBounds(xBegin, xEnd, yBegin, minMaxCache))
             return false;
-        if(!horizontalVertexInBounds(xBegin, xEnd, yEnd, minMaxCache))
+        if(!horizontalEdgeInBounds(xBegin, xEnd, yEnd, minMaxCache))
             return false;
-        if(!verticalVertexInBound(yBegin, yEnd, xBegin, minMaxCache))
+        if(!verticalEdgeInBound(yBegin, yEnd, xBegin, minMaxCache))
             return false;
-        return verticalVertexInBound(yBegin, yEnd, xEnd, minMaxCache);
+        return verticalEdgeInBound(yBegin, yEnd, xEnd, minMaxCache);
     }
 
-    private boolean horizontalVertexInBounds(int x1, int x2, int y, Map<String, MinMax> minMaxCache) {
+    private boolean horizontalEdgeInBounds(int x1, int x2, int y, Map<String, MinMax> minMaxCache) {
         for(int i = x1; i <= x2; i++) {
             if(checkNotInBound(minMaxCache, i, y))
                 return false;
@@ -219,7 +219,7 @@ public class Day09 implements Day {
         return true;
     }
 
-    private boolean verticalVertexInBound(int y1, int y2, int x, Map<String, MinMax> minMaxCache) {
+    private boolean verticalEdgeInBound(int y1, int y2, int x, Map<String, MinMax> minMaxCache) {
         for(int i = y1; i <= y2; i++) {
             if(checkNotInBound(minMaxCache, x, i))
                 return false;
