@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class AdventOfCode {
 
-    private static final List<Day> days = List.of(new Day01(), new Day02(), new Day03(), new Day04(), new Day05(), new Day06(), new Day07(), new Day08());
+    private static final List<Day> days = List.of(new Day01(), new Day02(), new Day03(), new Day04(), new Day05(), new Day06(), new Day07(), new Day08(), new Day09());
 
     public static void main(String[] args) {
         StopWatch stopWatch = new StopWatch("Advent of Code 2025");
